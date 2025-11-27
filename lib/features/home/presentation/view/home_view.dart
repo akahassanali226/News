@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/features/home/presentation/widgets/articles/article_widget.dart';
-import 'package:news/features/home/presentation/widgets/categories/categoryWidget.dart';
+import 'package:news/features/home/presentation/widgets/categories/category_widget.dart';
 import 'package:news/features/home/presentation/widgets/custom_drawer.dart';
 
 class HomeView extends StatefulWidget {
@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
         padding: REdgeInsets.symmetric(horizontal: 16),
         child: selectedCategory == null
             ? CategoryWidget(onTap: onCategoryClicked)
-            : ArticleWidget(),
+            : ArticleWidget(category: selectedCategory!),
       ),
     );
   }

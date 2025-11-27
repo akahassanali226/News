@@ -1,11 +1,7 @@
-import 'Sources.dart';
+import 'source.dart';
 
 class SourcesResponse {
-  SourcesResponse({
-      this.status, 
-      this.code, 
-      this.message, 
-      this.sources,});
+  SourcesResponse({this.status, this.code, this.message, this.sources});
 
   SourcesResponse.fromJson(dynamic json) {
     status = json['status'];
@@ -33,5 +29,4 @@ class SourcesResponse {
     }
     return map;
   }
-
 }

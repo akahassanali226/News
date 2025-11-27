@@ -30,6 +30,6 @@ class CategoryModel {
       title: "Technology",
       image: "assets/images/technology_dark.png",
     ),
-    CategoryModel(title: "Sport", image: "assets/images/sport_dark.png"),
+    CategoryModel(title: "Sports", image: "assets/images/sport_dark.png"),
   ];
 }
