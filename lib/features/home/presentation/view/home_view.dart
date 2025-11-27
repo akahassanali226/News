@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news/core/source/remote/api_manager.dart';
 import 'package:news/features/home/presentation/widgets/articles/article_widget.dart';
 import 'package:news/features/home/presentation/widgets/categories/category_widget.dart';
 import 'package:news/features/home/presentation/widgets/custom_drawer.dart';
@@ -12,17 +13,42 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  bool isSearching = false;
+  TextEditingController searchController = TextEditingController();
   String? selectedCategory;
+  String searchText = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedCategory == null ? "Home" : selectedCategory!),
+        title: isSearching
+            ? TextField(
+                controller: searchController,
+                autofocus: true,
+                onChanged: (value) {
+                  searchText = value;
+                  setState(() {});
+                },
+                decoration: InputDecoration(
+                  hintText: "Search",
+                  border: InputBorder.none,
+                ),
+              )
+            : Text(selectedCategory == null ? "Home" : selectedCategory!),
         actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.only(end: 8.w),
-            child: Icon(Icons.search, size: 24.w),
+          IconButton(
+            icon: Icon(isSearching ? Icons.close : Icons.search),
+
+            onPressed: () {
+              setState(() {
+                // Toggle search mode
+                isSearching = !isSearching;
+
+                // Clear text when closing search
+                if (!isSearching) searchController.clear();
+              });
+            },
           ),
         ],
       ),

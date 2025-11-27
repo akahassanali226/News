@@ -1,12 +1,13 @@
-import 'Articles.dart';
+import 'Article.dart';
 
 class ArticlesResponse {
   ArticlesResponse({
-      this.status, 
-      this.totalResults, 
-      this.code, 
-      this.message, 
-      this.articles,});
+    this.status,
+    this.totalResults,
+    this.code,
+    this.message,
+    this.articles,
+  });
 
   ArticlesResponse.fromJson(dynamic json) {
     status = json['status'];
@@ -16,7 +17,7 @@ class ArticlesResponse {
     if (json['articles'] != null) {
       articles = [];
       json['articles'].forEach((v) {
-        articles?.add(Articles.fromJson(v));
+        articles?.add(Article.fromJson(v));
       });
     }
   }
@@ -24,7 +25,7 @@ class ArticlesResponse {
   num? totalResults;
   String? code;
   String? message;
-  List<Articles>? articles;
+  List<Article>? articles;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -37,5 +38,4 @@ class ArticlesResponse {
     }
     return map;
   }
-
 }

@@ -17,15 +17,17 @@ class ApiManager {
     return sourcesResponse;
   }
 
-  static Future<ArticlesResponse> getArticles(String source) async {
+  static Future<ArticlesResponse> getArticles(String? source) async {
     var response = await dio.get(
-      "/v2/top-headlines/sources",
+      "/v2/everything",
       queryParameters: {
         "apiKey": "b91930634d704e9f92a90ef8c54eaccd",
         "sources": source,
       },
     );
-    ArticlesResponse articlesResponse = ArticlesResponse.fromJson(response.data);
+    ArticlesResponse articlesResponse = ArticlesResponse.fromJson(
+      response.data,
+    );
     return articlesResponse;
   }
 }
